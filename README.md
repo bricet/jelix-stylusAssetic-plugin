@@ -1,4 +1,4 @@
-What is jelix-lessphp-plugin ?
+What is jelix-stylusAssetic-plugin ?
 ==============================
 
 This project is a plugin for [Jelix](http://jelix.org) PHP framework. It allows you to use easily [stylus](http://learnboost.github.com/stylus/) dynamic stylesheet language in Jelix (using [Assetic](https://github.com/kriswallsmith/assetic)).
@@ -23,7 +23,9 @@ Unzip /kriswallsmith-assetic-f829ad2/src/Assetic/ directory in your htmlresponse
 This plugin needs node.js with stylus module to be installed.
 
 Note : in Assetic's Filter/StylusFilter.php file, I needed to add the following line so that everything works fine (just before the line containing `require('stylus')`) :
+
 `require.paths.push('/usr/local/lib/node_modules');`
+
 
 I am not Assetic and/or node.js aware enough to tell if this is really needed ...
 
@@ -40,19 +42,19 @@ E.g. in your response :
 
 `$this->addCSSLink($gJConfig->urlengine['basePath'].'themes/'.$gJConfig->theme.'/Css/style.styl', array( 'stylus' => true ));`
 
-Your config file must activate lessphp plugin :
+Your config file must activate stylusAssetic plugin :
 
     [jResponseHtml]
     plugins=stylusAssetic
 
-N.B. : the directories containing less files should be writable by your web server ! Indeed, compiled files will be written in that very same directory so that relative urls go on working ...
+N.B. : the directories containing stylus files should be writable by your web server ! Indeed, compiled files will be written in that very same directory so that relative urls go on working ...
 
 
 
 Config
 ======
 
-You can configure lessphp's behviour regarding compilation:
+You can configure stylus's behviour regarding compilation:
 
     [jResponseHtml]
     ;...
