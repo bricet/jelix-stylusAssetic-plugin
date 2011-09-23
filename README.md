@@ -14,9 +14,9 @@ Under Jelix default configuration, create an "htmlresponse" directory in your pr
 
 Clone this repository in that directory.
 
-Download [Assetic v1.0.2](https://github.com/kriswallsmith/assetic/zipball/v1.0.2) or newer.
+Download [Assetic](https://github.com/kriswallsmith/assetic/zipball/master).
 
-Unzip /kriswallsmith-assetic-f829ad2/src/Assetic/ directory in your htmlresponse/stylusAssetic directory previously created.
+Unzip /kriswallsmith-assetic-*/src/Assetic/ directory in your htmlresponse/stylusAssetic directory previously created.
 
 
 
