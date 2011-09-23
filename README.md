@@ -22,12 +22,6 @@ Unzip /kriswallsmith-assetic-f829ad2/src/Assetic/ directory in your htmlresponse
 
 This plugin needs node.js with stylus module to be installed.
 
-Note : in Assetic's Filter/StylusFilter.php file, I needed to add the following line so that everything works fine (just before the line containing `require('stylus')`) :
-
-`require.paths.push('/usr/local/lib/node_modules');`
-
-
-I am not Assetic and/or node.js aware enough to tell if this is really needed ...
 
 
 
@@ -59,14 +53,23 @@ You can configure stylus's behviour regarding compilation:
     [jResponseHtml]
     ;...
     ; always|onchange|once
-    stylus_assetic_compile=always
+    stylusAssetic_compile=always
 
-If stylus\_assetic\_compile's value is not valid or empty, its default value is onchange.
+If stylusAssetic\_compile's value is not valid or empty, its default value is onchange.
 
 * always : compile stylus file on all requests
 * onchange : compile stylus file only if it has changed
 * once : compile stylus file once and never compile it again (until compiled file is removed)
 
+You can also set path to node.js binary and node.js modules :
+
+    [jResponseHtml]
+    ;...
+    ;default value is /usr/bin/node : MUST be changed for MS Windows and may be also for *Unix
+    stylusAssectic_node_bin_path="/usr/local/bin/node"
+    
+    ;default value is empty. Must be comma-separated if several paths needed (why the hell would we ?)
+    stylusAssectic_node_paths="/usr/local/lib/node_modules"
 
 
 About this plugin
