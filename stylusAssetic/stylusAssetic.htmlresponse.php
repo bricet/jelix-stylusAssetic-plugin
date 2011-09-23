@@ -63,8 +63,8 @@ class stylusAsseticHTMLResponsePlugin implements jIHTMLResponsePlugin {
         global $gJConfig;
 
         $compileFlag = STYLUS_ASSETIC_COMPILE_ONCHANGE;
-        if( isset($gJConfig->jResponseHtml['stylus_assetic_compile']) ) {
-            switch($gJConfig->jResponseHtml['stylus_assetic_compile']) {
+        if( isset($gJConfig->jResponseHtml['stylusAssetic_compile']) ) {
+            switch($gJConfig->jResponseHtml['stylusAssetic_compile']) {
             case 'always':
                 $compileFlag = STYLUS_ASSETIC_COMPILE_ALWAYS;
                 break;
@@ -75,6 +75,16 @@ class stylusAsseticHTMLResponsePlugin implements jIHTMLResponsePlugin {
                 $compileFlag = STYLUS_ASSETIC_COMPILE_ONCE;
                 break;
             }
+        }
+
+        $nodeBinPath = '/usr/bin/node';
+        if(isset($gJConfig->jResponseHtml['stylusAssectic_node_bin_path']) && $gJConfig->jResponseHtml['stylusAssectic_node_bin_path'] != '') {
+            $nodeBinPath = $gJConfig->jResponseHtml['stylusAssectic_node_bin_path'];
+        }
+
+        $nodePaths = array();
+        if(isset($gJConfig->jResponseHtml['stylusAssectic_node_paths']) && $gJConfig->jResponseHtml['stylus_node_paths'] != '') {
+            $nodePaths = explode(',', $gJConfig->jResponseHtml['stylus_node_paths']);
         }
 
         $inputCSSLinks = $this->response->getCSSLinks();
@@ -110,7 +120,7 @@ class stylusAsseticHTMLResponsePlugin implements jIHTMLResponsePlugin {
                         }
                         if( $compile ) {
                             $css = new AssetCollection(array(
-                                new FileAsset($filePath, array(new StylusFilter()))
+                                new FileAsset($filePath, array(new StylusFilter($nodeBinPath, $nodePaths)))
                             ));
 
                             file_put_contents( $outputPath, $css->dump() );
